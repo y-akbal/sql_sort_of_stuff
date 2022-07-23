@@ -1,5 +1,4 @@
-Some sql queries for practice
-
+### Some SQL(ite) Queries for practice
 
 Keep your successful queries in a `chinook-queries.sql` file.
 
@@ -30,6 +29,4 @@ Keep your successful queries in a `chinook-queries.sql` file.
 25. Provide a query that shows the top 3 best selling artists.
 26. Provide a query that shows the most purchased Media Type.
 27. Provide a query that shows the number tracks purchased in all invoices that contain more than one genre.
-
-
 
