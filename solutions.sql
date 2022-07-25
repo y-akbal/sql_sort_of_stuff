@@ -48,7 +48,11 @@ ON l = k
 
 10- SELECT sum(quantity), invoice_id FROM invoice_line GROUP BY invoice_id
 
-11- 
+11- SELECT track.track_id, track.name, invoice_line.unit_price FROM invoice_line LEFT JOIN track
+ON track.track_id = invoice_line.track_id GROUP BY invoice_line.track_id ORDER BY invoice_line.track_id
+
+
+12- 
 
 
 
