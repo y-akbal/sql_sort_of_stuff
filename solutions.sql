@@ -46,6 +46,10 @@ ON l = k
 
 9- SELECT sum(1) FROM invoice_items WHERE InvoiceId = 37
 
+10- SELECT sum(quantity), invoice_id FROM invoice_line GROUP BY invoice_id
+
+11- 
+
 
 
 
