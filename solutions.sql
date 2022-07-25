@@ -52,7 +52,14 @@ ON l = k
 ON track.track_id = invoice_line.track_id GROUP BY invoice_line.track_id ORDER BY invoice_line.track_id
 
 
-12- 
+12- SELECT track.track_id, track.name, track.composer, invoice_line.* FROM invoice_line LEFT JOIN track
+ON track.track_id = invoice_line.track_id GROUP BY invoice_line.track_id ORDER BY invoice_line.track_id
+
+
+13- SELECT billing_country, sum(1) "# Invoices" FROM invoice GROUP BY billing_country
+
+14- SELECT playlist.playlist_id, playlist.name, sum(1) "# OF ITEMS" FROM playlist LEFT JOIN playlist_track ON playlist.playlist_id = playlist_track.playlist_id GROUP BY playlist.playlist_id
+
 
 
 
