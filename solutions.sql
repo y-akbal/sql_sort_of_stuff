@@ -60,6 +60,32 @@ ON track.track_id = invoice_line.track_id GROUP BY invoice_line.track_id ORDER B
 
 14- SELECT playlist.playlist_id, playlist.name, sum(1) "# OF ITEMS" FROM playlist LEFT JOIN playlist_track ON playlist.playlist_id = playlist_track.playlist_id GROUP BY playlist.playlist_id
 
+15- SELECT Title,
+		Album_Name,
+		genre.name,
+		Media_Type_
+	FROM	
+genre
+LEFT JOIN
+(SELECT track.name Title, 
+		album.title Album_Name,
+		track.genre_id Genre_Id,
+		track.media_type_id Media_Type_
+FROM track 
+LEFT JOIN 
+	album USING (album_id))
+USING(genre_id);
+
+16- SELECT customer_id, 
+		sum(invoice_line.quantity) Quantity, 
+		total 
+FROM invoice 
+LEFT JOIN 
+	invoice_line USING (invoice_id) 
+GROUP BY invoice_id 
+ORDER BY customer_id DESC
+17- 
+
 
 
 
