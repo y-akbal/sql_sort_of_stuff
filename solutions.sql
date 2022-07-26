@@ -171,7 +171,7 @@ GROUP BY invoice.billing_country
 SELECT billing_country, sum(1) invoices FROM invoice
 GROUP BY invoice.billing_country
 
-23- SELECT max(sum_), track_ID FROM
+23- /* did it for 2020 */ SELECT max(sum_), track_ID FROM
 (
 SELECT sum(1) sum_, track_ID FROM
 (
@@ -181,6 +181,7 @@ invoice
 INNER JOIN
 invoice_line
 USING (invoice_id)
+WHERE Date_ = 2020
 )
 GROUP BY track_ID
 )
@@ -190,8 +191,7 @@ track INNER JOIN
 (
 SELECT sum(1) sum_, track_ID_ FROM
 (
-SELECT invoice_id, track_id track_ID_, 
-CAST(strftime('%Y',invoice_date) as INTEGER) Date_ FROM 
+SELECT invoice_id, track_id track_ID_, FROM 
 invoice
 LEFT JOIN
 invoice_line
@@ -202,7 +202,16 @@ ORDER BY sum_ DESC
 LIMIT 5)
 ON track_ID_ = track.track_id
 
-25 - 
+25 -  SELECT ID, composer, sum(1) TOT FROM 
+invoice_line
+LEFT JOIN
+  ( SELECT track_id ID, composer FROM 
+track )
+ON ID = invoice_line.track_id
+WHERE composer IS NOT NULL
+GROUP BY composer
+ORDER BY TOT DESC
+/* This dude may be wrong watca'*/
 
 
 
