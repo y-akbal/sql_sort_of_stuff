@@ -1,4 +1,4 @@
-### Some SQL(ite) Queries for practice (I have grabbed from https://github.com/kenziebottoms/nss-back-02-chinook)
+### Some SQL(ite) Queries for practicing and warming-up (which I have grabbed from https://github.com/kenziebottoms/nss-back-02-chinook)
 
 Keep your successful queries in a `chinook-queries.sql` file.
 
