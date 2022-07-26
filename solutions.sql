@@ -84,8 +84,59 @@ LEFT JOIN
 	invoice_line USING (invoice_id) 
 GROUP BY invoice_id 
 ORDER BY customer_id DESC
-17- 
+17-  SELECT support_rep_id, sum(TOTAL_)
+FROM customer INNER JOIN 
+(SELECT customer_id, sum(1) TOTAL_
+FROM
+	invoice
+GROUP BY customer_id)
+USING (customer_id)
+GROUP BY support_rep_id
 
+/*
+gives partial answer, if you do the following you will get the names as well
+*/	
+
+17- SELECT employee.first_name, employee.last_name, employee.employee_id, TOTAL__
+FROM 
+employee
+INNER JOIN
+((SELECT support_rep_id, sum(TOTAL_) TOTAL__
+FROM customer INNER JOIN 
+(SELECT customer_id, sum(1) TOTAL_
+FROM
+	invoice
+GROUP BY customer_id)
+USING (customer_id)
+GROUP BY support_rep_id))
+ON 1
+employee_id = support_rep_id
+
+	
+18- /*(We answer this question for 2017)*/
+SELECT support_rep_id, DATE_, sum(1)
+FROM customer INNER JOIN 
+(SELECT customer_id, CAST(strftime('%Y',invoice_date) as INTEGER) DATE_
+FROM
+	invoice
+)
+WHERE DATE_ = 2017
+GROUP BY support_rep_id
+/* OR */
+SELECT  support_rep_id, max(TOTAL_sum) FROM
+(SELECT support_rep_id, DATE_, sum(1) TOTAL_sum
+FROM customer INNER JOIN 
+(SELECT customer_id, CAST(strftime('%Y',invoice_date) as INTEGER) DATE_
+FROM
+	invoice
+)
+WHERE DATE_ = 2017
+GROUP BY support_rep_id)
+
+
+19 - /* The same as before */
+
+20 - 
 
 
 
