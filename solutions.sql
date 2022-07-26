@@ -136,9 +136,73 @@ GROUP BY support_rep_id)
 
 19 - /* The same as before */
 
-20 - 
+
+20- SELECT  support_rep_id, max(TOTAL_sum) FROM
+(SELECT support_rep_id, DATE_, sum(1) TOTAL_sum
+FROM customer INNER JOIN 
+(SELECT customer_id, CAST(strftime('%Y',invoice_date) as INTEGER) DATE_
+FROM
+	invoice
+)
+GROUP BY support_rep_id)
 
 
+21 - SELECT employee.first_name, employee.last_name, Tot_Customers
+FROM employee 
+INNER JOIN 
+(SELECT sum(1) Tot_Customers, 
+		support_rep_id 
+	FROM customer 
+	GROUP BY customer.support_rep_id
+)
+						
+ON support_rep_id = employee.employee_id
+
+/* IF you use left join here you see non sales agents get NULL, so better use INNER*/ 
+
+22- /* For max*/
+
+ SELECT billing_country, max(invoices) FROM
+(SELECT billing_country, sum(1) invoices FROM invoice
+GROUP BY invoice.billing_country
+)
+
+/* For all countries*/
+SELECT billing_country, sum(1) invoices FROM invoice
+GROUP BY invoice.billing_country
+
+23- SELECT max(sum_), track_ID FROM
+(
+SELECT sum(1) sum_, track_ID FROM
+(
+SELECT invoice_id, track_id track_ID, 
+CAST(strftime('%Y',invoice_date) as INTEGER) Date_ FROM 
+invoice
+INNER JOIN
+invoice_line
+USING (invoice_id)
+)
+GROUP BY track_ID
+)
+
+24- SELECT track.name, track_ID_  FROM
+track INNER JOIN
+(
+SELECT sum(1) sum_, track_ID_ FROM
+(
+SELECT invoice_id, track_id track_ID_, 
+CAST(strftime('%Y',invoice_date) as INTEGER) Date_ FROM 
+invoice
+LEFT JOIN
+invoice_line
+USING (invoice_id)
+)
+GROUP BY track_ID_
+ORDER BY sum_ DESC
+LIMIT 5)
+ON track_ID_ = track.track_id
+
+25 - 
 
 
 
