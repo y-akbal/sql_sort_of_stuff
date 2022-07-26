@@ -211,7 +211,23 @@ ON ID = invoice_line.track_id
 WHERE composer IS NOT NULL
 GROUP BY composer
 ORDER BY TOT DESC
-/* This dude may be wrong watca'*/
+/* This dude may be wrong wathca' nevertheless gives the order. Now it is easy to find max*/
+
+26- SELECT sum(1),
+		media_type_id 
+FROM 
+(SELECT track_id T_ID FROM invoice_line) 
+INNER JOIN track  
+ON track.track_id = T_ID
+GROUP BY media_type_id
+
+27- SELECT sum(Quantity) Tracks_Purchased, InvoiceId FROM invoice_items WHERE TrackId IN
+(SELECT TrackId FROM tracks WHERE AlbumId in 
+(SELECT AlbumId FROM 
+(SELECT max(GenreId) - min(GenreID) GEN, AlbumId FROM tracks GROUP BY AlbumId)
+WHERE GEN != 0))
+GROUP BY InvoiceId
+
 
 
 
