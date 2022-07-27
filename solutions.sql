@@ -213,22 +213,22 @@ GROUP BY composer
 ORDER BY TOT DESC
 /* This dude may be wrong wathca' nevertheless gives the order. Now it is easy to find max*/
 
-26- SELECT sum(1),
-		media_type_id 
+26- SELECT Invoice_ID_, Total_Number_Of_Tracks FROM
+
+(SELECT max(GEN_ID) - min(GEN_ID) GEN_DIF,
+		IN_ID Invoice_ID_,
+		sum(tot_track) Total_Number_Of_Tracks
 FROM 
-(SELECT track_id T_ID FROM invoice_line) 
-INNER JOIN track  
-ON track.track_id = T_ID
-GROUP BY media_type_id
-
-27- SELECT sum(Quantity) Tracks_Purchased, InvoiceId FROM invoice_items WHERE TrackId IN
-(SELECT TrackId FROM tracks WHERE AlbumId in 
-(SELECT AlbumId FROM 
-(SELECT max(GenreId) - min(GenreID) GEN, AlbumId FROM tracks GROUP BY AlbumId)
-WHERE GEN != 0))
-GROUP BY InvoiceId
-
-
+(SELECT  track_id tra_ID, 1 Tot_track,
+		genre_id GEN_ID, 
+		invoice_id IN_ID 
+FROM  invoice_line 
+LEFT JOIN track
+USING (track_id)
+ORDER BY IN_ID)
+GROUP BY IN_ID)
+WHERE GEN_DIF != 0  
+/* Wavvv this one did hurt*/
 
 
 	
