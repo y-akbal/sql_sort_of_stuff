@@ -1,6 +1,6 @@
-### Some SQL(ite) Queries for practicing and warming-up (which I have grabbed from https://github.com/kenziebottoms/nss-back-02-chinook)
+### Some SQL(ite) Queries for practicing and warming-up (For those, like me, who saw such queries a couple of thousands years ago!) (which I have grabbed from https://github.com/kenziebottoms/nss-back-02-chinook)
 
-Keep your successful queries in a `chinook-queries.sql` file.
+
 
 1. Provide a query showing Customers (just their full names, customer ID and country) who are not in the US.
 2. Provide a query only showing the Customers from Brazil.
