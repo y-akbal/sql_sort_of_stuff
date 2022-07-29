@@ -1,5 +1,6 @@
 ### Some SQL(ite) Queries for practicing and warming-up (For those, like me, who saw such queries a couple of thousands years ago!) (which I have grabbed from https://github.com/kenziebottoms/nss-back-02-chinook)
 
+###Not complete! some queries may be the ugliest one, on time permitting I will revise them.
 
 
 1. Provide a query showing Customers (just their full names, customer ID and country) who are not in the US.
